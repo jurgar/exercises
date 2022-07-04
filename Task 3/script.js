@@ -13,34 +13,39 @@ const ENDPOINT = "https://gorest.co.in/public/v2/todos";
 
 fetch(ENDPOINT);
 
-// const createUser = (user) => {
-//   const id = user.id;
-//   const title = user.title;
-//   const due_on = user.due_on;
-//   const status = user.status;
+const renderCard = (user) => {
+  const { title, status, due_on } = user;
 
-//   const tdId = document.createElement("td");
-//   const tdTitle = document.createElement("td");
-//   const tdDueOn = document.createElement("td");
-//   const tdStatus = document.createElement("td");
+  const card = document.createElement("div");
 
-//   tdId.textContent = user.id;
-//   tdTitle.textContent = user.title;
-//   tdDueOn.textContent = user.due_on;
-//   tdStatus.textContent = user.status;
+  const output = document.getElementById("output");
 
-//   const trUser = document.createElement("tr");
-//   trUser.append(tdId, tdTitle, tdDueOn, tdStatus);
+  const titleEl = document.createElement("p");
 
-//   return trUser;
-// };
+  const dueonEl = document.createElement("p");
+
+  const statusEl = document.createElement("h5");
+
+  card.className = "card";
+
+  titleEl.textContent = title;
+
+  dueonEl.textContent = due_on;
+
+  statusEl.textContent = status;
+
+  card.append(titleEl, dueonEl, statusEl);
+
+  output.append(card);
+};
 
 fetch("https://gorest.co.in/public/v2/todos")
   .then((resp) => resp.json())
+
   .then((response) => {
-    //atvaizduoti pirmo elemento duomenis
-    console.log(response);
+    response.forEach((user) => renderCard(user));
   })
+
   .catch((error) => {
-    console.error(error, ": Failed to load users");
+    console.error(error, ": failed to load");
   });
