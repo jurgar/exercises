@@ -10,42 +10,35 @@ Parašykite JS kodą, kuris atvaizduos TODOS korteles.
 -------------------------------------------------------------------------- */
 
 const ENDPOINT = "https://gorest.co.in/public/v2/todos";
+//2 uzduotis
 
-fetch(ENDPOINT);
-
-const renderCard = (user) => {
-  const { title, status, due_on } = user;
+const renderCard = (todo) => {
+  // const { title, due_on } = todo;
 
   const card = document.createElement("div");
+  const titleEl = document.createElement("h3");
+  const dueOnEl = document.createElement("span");
 
-  const output = document.getElementById("output");
-
-  const titleEl = document.createElement("p");
-
-  const dueonEl = document.createElement("p");
-
-  const statusEl = document.createElement("h5");
+  titleEl.textContent = todo.title;
+  //todoString(), localeString()
+  dueOnEl.textContent = new Date(todo.due_on).toDateString();
 
   card.className = "card";
+  card.style.background = todo.status === "pending" ? "orange" : "green";
+  card.append(titleEl, dueOnEl);
 
-  titleEl.textContent = title;
-
-  dueonEl.textContent = due_on;
-
-  statusEl.textContent = status;
-
-  card.append(titleEl, dueonEl, statusEl);
-
-  output.append(card);
+  document.getElementById("output").append(card);
 };
 
-fetch("https://gorest.co.in/public/v2/todos")
+// 1 .uzduotis
+
+fetch(ENDPOINT)
   .then((resp) => resp.json())
-
   .then((response) => {
-    response.forEach((user) => renderCard(user));
-  })
+    console.log(response);
 
+    response.forEach((todo) => renderCard(todo));
+  })
   .catch((error) => {
-    console.error(error, ": failed to load");
+    console.error(error);
   });
