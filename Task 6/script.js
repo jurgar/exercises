@@ -20,21 +20,22 @@ atveju grąžins pavojingų "routes" atkarpų sumą.
 atveju grąžins visų "routes" atkarpas naujame masyve pvz., ['2200', '2404'..].
 -------------------------------------------------------------------------- */
 
-// const total = number.reduce((total, number) => {
-//   console.log(total);
-//   return total + number;
-// });
+function getDangerRoutesTotalDistance(routeArr) {
+  const dangerRoutes = routeArr.filter((route) => route.danger);
 
-function filterDangerLongRoutes(routes) {
-  const dangerRoutes = routes.filter(
-    (route) => route.danger === true && route.distance > 3000
-  );
-  console.log(dangerRoutes);
+  // previous Value, value
+
+  return dangerRoutes.reduce((total, route) => (total += route.distance), 0);
 }
-filterDangerLongRoutes(routes);
 
-let dangerRoutesSum = filterDangerLongRoutes(routes);
+const totalOfDangerRoutes = getDangerRoutesTotalDistance(routes);
 
-console.log(dangerRoutesSum);
+console.log(totalOfDangerRoutes);
 
-// console.log(total);
+function getRoutesDistances(routeArr) {
+  return routeArr.map((route) => route.distance);
+}
+
+const routesDistances = getRoutesDistances(routes);
+
+console.log(routesDistances);

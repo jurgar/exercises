@@ -19,15 +19,6 @@ atveju grąžins "routes", kurie yra nepavojingi.
 2. funkcija "filterDangerLongRoutes" - kaip argumentą priims masyvą ir duoto masyvo 
 atveju grąžins masyvą su "routes", kurie pavojingi ir ilgesni nei 3000.
 -------------------------------------------------------------------------- */
-// function filterNonDangerRoutes(routes) {
-//   const routes = routes.filter(
-//     (riute) => routes.danger === false,
-//     distance >= 3000
-//   );
-
-//   // return modified;
-// }
-// filterNonDangerRoutes(routes);
 
 function filterNonDangerLongRoutes(routes) {
   const safeRoutes = routes.filter((route) => route.danger === false);
@@ -44,3 +35,27 @@ function filterDangerLongRoutes(routes) {
 }
 
 filterDangerLongRoutes(routes);
+
+// mokytojo sprendimas
+
+function filterNonDangerRoutes(routeArr) {
+  // route.danger === false
+
+  return routeArr.filter((route) => !route.danger);
+}
+
+// const arrowF = routeArr => routeArr.filter(route => !route.danger);
+
+console.log(filterNonDangerRoutes(routes));
+
+console.log(filterNonDangerRoutes(routes2));
+
+function filterDangerLongRoutes(routeArr) {
+  // route.danger === true
+
+  return routeArr.filter((route) => route.danger && route.distance > 3000);
+}
+
+const longDangerRoutes = filterDangerLongRoutes(routes);
+
+console.log(longDangerRoutes);
