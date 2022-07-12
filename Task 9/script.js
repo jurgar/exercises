@@ -18,12 +18,14 @@ class Movie {
   }
 
   wasExpensive = () => {
-    if (this.budget > 100000000) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.budget > 1000000000;
+
+    // if (this.budget > 100000000) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   };
 }
 const avatarMovie = new Movie("Avatar", " James Cameron", 237000000);
-console.log(avatarMovie.wasExpensive(""));
+console.log(avatarMovie.wasExpensive());
